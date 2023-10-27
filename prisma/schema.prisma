@@ -1,0 +1,130 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Listing {
+  id             String   @id @default(uuid())
+  title          String
+  advert_type    String
+  property_use   String?
+  market_status  String?
+  property_type  String?
+  address        String
+  state          String
+  city           String
+  country        String
+  show_address   Boolean
+  bathrooms      String?
+  total_area     String?
+  covered_area   String?
+  bedrooms       Int?
+  toilets        Int?
+  year_built     String?
+  facilities     String?
+  price          Int?
+  user           User?    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  price_per_unit String?
+  userId         String
+  Uploads         Uploads[]
+  TopListings   Boolean @default(false)
+  description    String?  @db.LongText
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime?           @updatedAt
+  expirationDate DateTime?
+}
+
+
+model Uploads {
+  id        String   @id @default(uuid())
+  url       String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  upload_type UploadType @default(Image)
+  Listing   Listing? @relation(fields: [listingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  listingId String?
+  userId    String
+    createdAt        DateTime           @default(now())
+  updatedAt        DateTime?           @updatedAt
+}
+
+model Impression {
+  id             String         @id @default(uuid())
+  impressionType ImpressionType
+  user           User[]
+  count          Int            @default(0)
+}
+
+enum ImpressionType {
+  Visitor
+  User
+}
+
+enum ListingType {
+  Rent
+  Sale
+}
+
+enum UploadType {
+  Image
+  Video
+}
+
+model User {
+  id              String       @id @default(uuid())
+  firstname       String       @db.VarChar(255)
+  lastname        String       @db.VarChar(255)
+  email           String       @unique(map: "email") @db.VarChar(255)
+  password        String       @db.VarChar(255)
+  image           String?      @default("http://localhost:3000/uploads/default.png") @db.VarChar(255)
+  whatsapp_no     String?
+  phone_no        String?
+  alternate_email String?      @db.VarChar(255)
+  email_verified  Boolean      @default(false)
+  listings        Listing[]
+  plan            Plan?        @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  planId          String?
+  role            Role         @default(USER)
+  subscriptions   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  subscriptionId  String
+  Uploads          Uploads[]
+  Impression      Impression?  @relation(fields: [impressionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  impressionId    String?
+    createdAt        DateTime           @default(now())
+      updatedAt        DateTime?           @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Subscription {
+  id            String    @id @default(uuid())
+  plan          Plan      @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  planId        String
+  starting_date DateTime  @default(now()) @db.Timestamp(6)
+  ending_date   DateTime?
+  User          User[]
+    createdAt        DateTime           @default(now())
+      updatedAt        DateTime?           @updatedAt
+}
+
+model Plan {
+  id                 String         @id @default(uuid())
+  price              Int
+  title              String
+  max_listings     Int            @default(0)
+  other_features     String @db.Text
+  image_uploads      String
+  video_uploads String?
+  users              User[]
+  subscriptions      Subscription[]
+    createdAt        DateTime           @default(now())
+      updatedAt        DateTime?           @updatedAt
+}
