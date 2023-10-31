@@ -43,7 +43,7 @@ const Page = () => {
     //@ts-ignore
     resolver: yupResolver(formSchema),
     defaultValues: {
-      address: "",
+      // address: "",
       coupon: "",
       duration: "1",
       email: "",
