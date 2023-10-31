@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { Listing } from "@prisma/client";
 import NotFound from "@/components/NotFound";
 
+/* eslint-disable @next/next/no-img-element */
 
 interface List extends Listing {
   Uploads: Array<{ id: string; url: string }>;
@@ -32,12 +33,11 @@ const Page = () => {
     speed: 500,
   };
 
-
   useEffect(() => {
     if (desref.current) {
-      desref.current.innerHTML = details.description as string; 
+      desref.current.innerHTML = details.description as string;
     }
-  }, [data]);
+  }, [details.description, data]);
 
   if (error) {
     return <NotFound />;
@@ -60,13 +60,14 @@ const Page = () => {
               <div>
                 <Slider {...settings}>
                   {details.Uploads.map((image, index) => (
-
                     <div className="h-[30rem]" key={image.id}>
+                      
                       <img
                         src={image.url}
                         alt=""
                         className="h-full w-full object-cover"
                       />
+                     
                     </div>
                   ))}
                 </Slider>
@@ -91,11 +92,11 @@ const Page = () => {
                   </article>
                   <article className="flex justify-between">
                     <p>Bedrooms</p>
-                    <p>{details.bedrooms && 'nill'}</p>
+                    <p>{details.bedrooms && "nill"}</p>
                   </article>
                   <article className="flex justify-between">
                     <p>Bathrooms</p>
-                    <p>{details.bathrooms && 'nill'}</p>
+                    <p>{details.bathrooms && "nill"}</p>
                   </article>
                   <article className="flex justify-between">
                     <p>Toilets</p>
