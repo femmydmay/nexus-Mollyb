@@ -53,7 +53,7 @@ const Page = () => {
       plan: "10000",
     },
   });
-  var date = new Date();
+  const date = new Date();
   useEffect(() => {
     date.setMonth(date.getMonth() + Number(watch().duration));
     setDuration(
