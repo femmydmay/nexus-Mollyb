@@ -12,10 +12,12 @@ import CircularProgressCustom from "@/components/CircularProgressCustom";
 import { MdPhotoCamera } from "react-icons/md";
 import { useAppSelector } from "@/hooks";
 import { User } from "@prisma/client";
-interface IForm extends User{
+
+/* eslint-disable @next/next/no-img-element */
+interface IForm extends User {
   plan: {
-    title: string
-  }
+    title: string;
+  };
 }
 const Page = () => {
   const formSchema = yup.object().shape({
@@ -50,17 +52,17 @@ const Page = () => {
   });
 
   const { user } = useAppSelector((state) => state.userReducers);
-console.log(user);
+  console.log(user);
 
   useEffect(() => {
     if (user) {
       reset({ ...user });
     }
-  }, [user]);
+  }, [user, reset]);
 
   const onsubmit = handleSubmit(async (data) => {
     try {
-      const{plan , ...user} = data  
+      const { plan, ...user } = data;
       const response = await axios.put("/api/users/user", user);
 
       if (response.status === 200) {
@@ -89,7 +91,7 @@ console.log(user);
     };
 
     onSubmit();
-  }, [files]);
+  }, [files, reset]);
 
   if (!user) {
     return <CircularProgressCustom />;
