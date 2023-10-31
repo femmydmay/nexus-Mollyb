@@ -105,7 +105,7 @@ const SinglePlan = ({ params }: { params: { id: string } }) => {
       setDetails(JSON.parse(plan.other_features))
   }
 
-},[plan])
+},[plan, reset])
   
   console.log(details);
   
