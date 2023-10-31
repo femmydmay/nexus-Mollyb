@@ -2,7 +2,7 @@
 
 import { Fetcher } from "@/types/fetch";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -53,7 +53,8 @@ const Page = () => {
       plan: "10000",
     },
   });
-  const date = new Date();
+  // const date = new Date();
+   const date = useMemo(() => new Date(), []);
   useEffect(() => {
     date.setMonth(date.getMonth() + Number(watch().duration));
     setDuration(
