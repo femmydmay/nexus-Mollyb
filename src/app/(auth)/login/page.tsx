@@ -62,12 +62,8 @@ const Login = () => {
     <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
       <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
         <div className="text-center">
-          <img
-            src="assets/logo.png"
-            width={150}
-            alt="logo"
-            className="mx-auto"
-          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="assets/logo.png" width={150} alt="" className="mx-auto" />
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
               Log in to your account
