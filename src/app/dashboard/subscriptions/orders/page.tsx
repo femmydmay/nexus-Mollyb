@@ -54,13 +54,13 @@ const Page = () => {
     },
   });
   // const date = new Date();
-   const date = useMemo(() => new Date(), []);
+  const date = useMemo(() => new Date(), []);
   useEffect(() => {
     date.setMonth(date.getMonth() + Number(watch().duration));
     setDuration(
       date.toLocaleDateString("default", { month: "long", year: "numeric" })
     );
-  }, [date, register, watch, watch().duration]);
+  }, [date, Page, fetcher, register, watch, watch().duration]);
   if (!data) {
     return <Loading />;
   }
