@@ -59,7 +59,7 @@ const Page = () => {
     setDuration(
       date.toLocaleDateString("default", { month: "long", year: "numeric" })
     );
-  }, [watch().duration]);
+  }, [date, register, watch().duration]);
   if (!data) {
     return <Loading />;
   }
