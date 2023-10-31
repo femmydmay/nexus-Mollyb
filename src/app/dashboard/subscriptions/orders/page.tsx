@@ -54,13 +54,30 @@ const Page = () => {
     },
   });
   // const date = new Date();
-  const date = useMemo(() => new Date(), []);
+  // const date = useMemo(() => new Date(), []);
+  // useEffect(() => {
+  //   date.setMonth(date.getMonth() + Number(watch().duration));
+  //   setDuration(
+  //     date.toLocaleDateString("default", { month: "long", year: "numeric" })
+  //   );
+  // }, [date, date.getMonth(), watch, watch().duration]);
+    const date = useMemo(() => new Date(), []);
+
+  // Extract complex expressions into separate variables
+  const month = date.getMonth();
+  const durationValue = watch().duration;
+
   useEffect(() => {
-    date.setMonth(date.getMonth() + Number(watch().duration));
+    // Use the extracted variables in the effect logic
+    const newDate = new Date(date); // create a new date object to avoid modifying the original date object
+    newDate.setMonth(month + Number(durationValue));
     setDuration(
-      date.toLocaleDateString("default", { month: "long", year: "numeric" })
+      newDate.toLocaleDateString("default", { month: "long", year: "numeric" })
     );
-  }, [date, date.getMonth(), watch().duration]);
+  }, [date, month, watch, durationValue]); // Include the extracted variables in the dependency array
+
+  // Rest of your component code
+};
   if (!data) {
     return <Loading />;
   }
