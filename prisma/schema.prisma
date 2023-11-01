@@ -82,8 +82,8 @@ model User {
   email           String       @unique(map: "email") @db.VarChar(255)
   password        String       @db.VarChar(255)
   image           String?      @default("http://localhost:3000/uploads/default.png") @db.VarChar(255)
-  whatsapp_no     String?
-  phone_no        String?
+  whatsapp_no     String
+  phone_no        String
   alternate_email String?      @db.VarChar(255)
   email_verified  Boolean      @default(false)
   listings        Listing[]

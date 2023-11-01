@@ -10,7 +10,7 @@ const AdminCheck = ({ children }: { children: React.ReactNode }) => {
   const dispatch= useAppDispatch()
   useEffect(() => {
   dispatch(getUser())
-},[])
+},[dispatch])
   if (loading) { 
     return <Loading/>
   }

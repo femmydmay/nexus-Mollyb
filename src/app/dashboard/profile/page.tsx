@@ -45,9 +45,12 @@ const Page = () => {
   } = useForm<IForm>({
     resolver: yupResolver(formSchema),
     defaultValues: {
+      firstname: "",
+      lastname: "",
+       email: "",
       alternate_email: "",
       phone_no: "",
-      whatsapp_no: "",
+      whatsapp_no: "", 
     },
   });
 
