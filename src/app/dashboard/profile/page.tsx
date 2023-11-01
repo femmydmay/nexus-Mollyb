@@ -45,12 +45,13 @@ const Page = () => {
   } = useForm<IForm>({
     resolver: yupResolver(formSchema),
     defaultValues: {
-      alternate_email: "",
-      phone_no: "",
-      whatsapp_no: "",
+      firstname: "",
+      lastname: "",
+      email: "",
+      alternate_email: null,
+      phone_no: null,
+      whatsapp_no: null,
     },
-
-    
   });
 
   const { user } = useAppSelector((state) => state.userReducers);
