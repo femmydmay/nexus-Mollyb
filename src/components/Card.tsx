@@ -3,8 +3,6 @@ import React from "react";
 const Card = ({ image, description, price, discount }: { image: string; description: string; price: number; discount:number}) => {
   return (
     <div className="transition-all ease-in-out duration-200 shadow-md hover:shadow-2xl rounded-md">
-  
-
       <a href="#" className="group relative block overflow-hidden">
         <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
           <span className="sr-only">Wishlist</span>
@@ -24,7 +22,7 @@ const Card = ({ image, description, price, discount }: { image: string; descript
             />
           </svg>
         </button>
-
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2664&q=80"
           alt=""
@@ -36,7 +34,9 @@ const Card = ({ image, description, price, discount }: { image: string; descript
             New
           </span>
 
-          <h3 className="mt-4 text-lg font-medium text-gray-900">{description}</h3>
+          <h3 className="mt-4 text-lg font-medium text-gray-900">
+            {description}
+          </h3>
 
           <p className="mt-1.5 text-sm text-gray-700">lagos</p>
 

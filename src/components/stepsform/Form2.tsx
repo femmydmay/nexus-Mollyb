@@ -130,7 +130,7 @@ price_per_unit: yup.string(),
     }
     
         
-},[res])
+},[res, reset])
   
 
   return (

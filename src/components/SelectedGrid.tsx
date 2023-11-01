@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 
+/* eslint-disable @next/next/no-img-element */
 interface SelectedGridProps {
 
   videos: File[];

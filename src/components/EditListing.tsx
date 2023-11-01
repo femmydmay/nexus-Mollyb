@@ -119,7 +119,7 @@ const EditListing = ({
         show_address: JSON.stringify(listing.show_address) as any,
       });
     }
-  }, [listing]);
+  }, [listing, reset]);
 
   return (
     <>

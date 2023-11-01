@@ -30,6 +30,7 @@ const Products = ({ item, title }: { item: Items[]; title: string }) => {
                         <div className="flex justify-center relative rounded-lg overflow-hidden h-52">
                           <div className="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
                             <div className="absolute inset-0 bg-black opacity-70 transition-all ease-in-out duration-100 hover:opacity-100 hover:bg-transparent">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={listing?.Uploads[0]?.url}
                                 alt=""

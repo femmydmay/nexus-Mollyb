@@ -130,19 +130,18 @@ export default function DashDrawer({toggleDrawer, open}:{toggleDrawer:(inOpen: b
  
   return (
     <Box sx={{ display: "flex" }}>
-   
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box
           role="presentation"
-    
           onKeyDown={toggleDrawer(false)}
-          sx={{ backgroundColor: "#10172b", height: '100%' }}
+          sx={{ backgroundColor: "#10172b", height: "100%" }}
         >
           <div className="flex flex-col h-full px-4 bg-slate-900">
             <div className="h-20 flex items-center pl-2">
               <div className="w-full flex items-center gap-x-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={user?.image as string}
+                  src={user?.image as string} alt="user"
                   className="w-10 h-10 rounded-full"
                 />
                 <div>

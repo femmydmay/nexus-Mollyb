@@ -27,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <header className="shadow py-5 bg-white">

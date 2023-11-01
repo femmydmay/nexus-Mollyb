@@ -137,9 +137,10 @@ console.log(user);
         <div className="flex flex-col h-full px-4">
           <div className="h-20 flex items-center pl-2">
             <div className="w-full flex items-center gap-x-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={user?.image as string}
-                className="w-10 h-10 rounded-full"
+                className="w-10 h-10 rounded-full" alt="userimage"
               />
               <div>
                 <span className="block text-orange-400 text-sm font-semibold">
