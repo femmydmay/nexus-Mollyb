@@ -45,12 +45,9 @@ const Page = () => {
   } = useForm<IForm>({
     resolver: yupResolver(formSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
-       email: "",
       alternate_email: "",
-      phone_no: "",
-      whatsapp_no: "", 
+      phone_no: undefined,
+      whatsapp_no: undefined,
     },
   });
 
@@ -269,7 +266,7 @@ const Page = () => {
                         ? "border-red-500 border-2 focus:border-red-500"
                         : ""
                     }`}
-                    placeholder="07012345678 "
+                    placeholder="08185696269 "
                   />
 
                   {errors.whatsapp_no && (
@@ -294,7 +291,7 @@ const Page = () => {
                         ? "border-red-500 border-2 focus:border-red-500"
                         : ""
                     }`}
-                    placeholder="07012345678"
+                    placeholder="08185696269"
                   />
 
                   {errors.phone_no && (
