@@ -28,9 +28,9 @@ const Page = () => {
       .string()
       .required("email is required")
       .email("please enter a valid email address"),
-    whatsapp_no: yup.string(),
-    phone_no: yup.string(),
-    alternate_email: yup.string(),
+    whatsapp_no: yup.string().nullable(true),
+    phone_no: yup.string().nullable(true),
+    alternate_email: yup.string().nullable(true),
   });
 
   const [files, setFiles] = useState(null);
@@ -46,8 +46,8 @@ const Page = () => {
     resolver: yupResolver(formSchema),
     defaultValues: {
       alternate_email: "",
-      phone_no: undefined,
-      whatsapp_no: undefined,
+      phone_no:"",
+      whatsapp_no: "",
     },
   });
 
