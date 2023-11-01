@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -17,6 +17,12 @@ import { User } from "@prisma/client";
 interface IForm extends User {
   plan: {
     title: string;
+    whatsapp_no?: string | null | undefined;
+    phone_no?: string | null | undefined;
+    alternate_email?: string | null | undefined;
+    firstname: string;
+    lastname: string;
+    email: string;
   };
 }
 const Page = () => {
