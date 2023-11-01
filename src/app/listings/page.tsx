@@ -52,7 +52,7 @@ const Page = () => {
         const state = searchParams.get("state") as string | "";
         dispatch( searchListing({ search, type, property_type, price, state }))
        
-    },[searchParams])
+    },[searchParams, dispatch])
 
 
   return (
@@ -103,6 +103,7 @@ const Page = () => {
                       <div className="">
                         <div className="relative  flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white/10 bg-white">
                           <div className="w-full md:w-1/4 bg-white ">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={listings.Uploads[0].url}
                               alt="tailwind logo"

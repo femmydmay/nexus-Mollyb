@@ -37,7 +37,7 @@ const Page = () => {
     if (desref.current) {
       desref.current.innerHTML = details.description as string;
     }
-  }, [details.description, data]);
+  }, [data]);
 
   if (error) {
     return <NotFound />;
