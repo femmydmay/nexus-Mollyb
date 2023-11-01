@@ -28,9 +28,9 @@ const Page = () => {
       .string()
       .required("email is required")
       .email("please enter a valid email address"),
-    whatsapp_no: yup.string().nullable(true),
-    phone_no: yup.string().nullable(true),
-    alternate_email: yup.string().nullable(true),
+    whatsapp_no: yup.string().nullable(""),
+    phone_no: yup.string().nullable(""),
+    alternate_email: yup.string().nullable(""),
   });
 
   const [files, setFiles] = useState(null);
