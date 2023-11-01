@@ -30,7 +30,7 @@ const Page = () => {
       .email("please enter a valid email address"),
     whatsapp_no: yup.string().nullable(""),
     phone_no: yup.string().nullable(""),
-    alternate_email: yup.string().nullable(""),
+    alternate_email: yup.string(),
   });
 
   const [files, setFiles] = useState(null);
@@ -46,7 +46,7 @@ const Page = () => {
     resolver: yupResolver(formSchema),
     defaultValues: {
       alternate_email: "",
-      phone_no:"",
+      phone_no: "",
       whatsapp_no: "",
     },
   });
