@@ -21,17 +21,16 @@ interface IForm extends User {
 }
 const Page = () => {
   const formSchema = yup.object().shape({
-    firstname: yup.string().required("first name is required").nullable(""),
-    lastname: yup.string().required("last name is required").nullable(""),
+    firstname: yup.string().required("first name is required"),
+    lastname: yup.string().required("last name is required"),
 
     email: yup
       .string()
       .required("email is required")
-      .email("please enter a valid email address")
-      .nullable(""),
-    whatsapp_no: yup.string().nullable(""),
-    phone_no: yup.string().nullable(""),
-    alternate_email: yup.string().nullable(""),
+      .email("please enter a valid email address"),
+    whatsapp_no: yup.string().nullable(),
+    phone_no: yup.string(),
+    alternate_email: yup.string(),
   });
 
   const [files, setFiles] = useState(null);
@@ -50,6 +49,8 @@ const Page = () => {
       phone_no: "",
       whatsapp_no: "",
     },
+
+    
   });
 
   const { user } = useAppSelector((state) => state.userReducers);
