@@ -63,6 +63,7 @@ price_per_unit: yup.string(),
       reset,
       formState: { errors },
     } = useForm<IForm>({
+      //@ts-ignore
       resolver: yupResolver(formSchema),
       defaultValues: {
       
@@ -130,7 +131,7 @@ price_per_unit: yup.string(),
     }
     
         
-},[res, reset])
+},[res])
   
 
   return (

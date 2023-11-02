@@ -26,7 +26,6 @@ const {collapse, setCollapse} = state;
       <div className={`bg-white items-center   max-w-screen   lg:px-8 `}>
         <div className="flex items-center justify-between py-3 lg:py-5 max-lg:px-2 ">
           <a href="#">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/logo.png"
               width={120}
@@ -55,7 +54,7 @@ const {collapse, setCollapse} = state;
               Home
             </Link>
             <button
-              className="text-gray-500 hover:text-gray-800 max-lg:hidden"
+              className="text-gray-500 hover:text-gray-800 hidden md:block"
               onClick={() => setCollapse((prev) => !prev)}
             >
               {collapse ? (
@@ -87,8 +86,10 @@ const {collapse, setCollapse} = state;
               )}
             </button>
 
+            <div className="md:hidden">
+
             <Button
-              className="text-gray-500 hover:text-gray-800 lg:hidden"
+              className="text-gray-500 hover:text-gray-800 "
               variant="outlined"
               color="neutral"
               onClick={state.toggleDrawer(true)}
@@ -121,6 +122,7 @@ const {collapse, setCollapse} = state;
                 </svg>
               )}
             </Button>
+            </div>
           </div>
         </div>
       </div>

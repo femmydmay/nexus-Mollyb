@@ -18,7 +18,7 @@ const Dash = ({ children }: { children: React.ReactNode }) => {
 
       setLogin({ loggedin: true });
     }
-  }, [user, dispatch]);
+  }, [user]);
 
     const [open, setOpen] = useState(false);
     const toggleDrawer =

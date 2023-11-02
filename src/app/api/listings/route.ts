@@ -25,7 +25,6 @@ export const GET = async (request: Request) => {
     }});
     return new Response(JSON.stringify(listings), { status: 200 });
   } catch (error) {
-    
    return new Response(JSON.stringify({ message: "Internal server" }), {
      status: 500,
    });

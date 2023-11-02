@@ -1,24 +1,16 @@
+import Loader from "@/components/Loader";
+import Manageuser from "@/components/Manageuser";
+import { Suspense } from "react";
 
-
-import { User } from "@/types/user";
-
-
-// import AdminCheck from "@/layout/AdminCheck";
-import AllUsers from "@/components/AllUsers";
-
-
-const getUsers = async () => {
-  const response = await fetch('http://localhost:3000/api/users')
-  return response.json()
-}
 
 const Page = async () => {
-const users = await getUsers() as User[];
+
   return (
-    // <AdminCheck>
-<AllUsers data={users}/>  
-  
-    // </AdminCheck>
+    <div>
+      <Suspense fallback={<Loader/>}>
+        <Manageuser/>
+    </Suspense>
+    </div>
   );
 };
 

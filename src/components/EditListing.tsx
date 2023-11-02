@@ -119,7 +119,7 @@ const EditListing = ({
         show_address: JSON.stringify(listing.show_address) as any,
       });
     }
-  }, [listing, reset]);
+  }, [listing]);
 
   return (
     <>
@@ -281,7 +281,7 @@ const EditListing = ({
                       <FetchCity
                         register={register}
                         country={getValues().country}
-                        state={watch().state}
+                        state={watch().state as any}
                       />
                     </div>
                   </div>

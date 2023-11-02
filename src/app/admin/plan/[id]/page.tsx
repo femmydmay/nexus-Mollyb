@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import useSWR from "swr";
 import { Fetcher } from '@/types/fetch';
 
-import { Plan } from '@/types/plan';
+
 import AdminCheck from '@/layout/AdminCheck';
 import { plans_details } from "@/utils/data";
 import Select from "react-select";
@@ -47,7 +47,7 @@ const SinglePlan = ({ params }: { params: { id: string } }) => {
       data: plan,
       error,
       isLoading,
-  } = useSWR(`http://localhost:3000/api/plans/${id}`, fetcher);
+  } = useSWR(`/api/plans/${id}`, fetcher);
   
 
 
@@ -105,7 +105,7 @@ const SinglePlan = ({ params }: { params: { id: string } }) => {
       setDetails(JSON.parse(plan.other_features))
   }
 
-},[plan, reset])
+},[plan])
   
   console.log(details);
   

@@ -46,14 +46,19 @@ export const POST = async (request: Request) => {
       });
     }
 
+    
+    
     const show_addres =
-      body.show_address.toLowerCase() === "true" ? true : false;
+    body.show_address.toLowerCase() === "true" ? true : false;
     const { images, bedrooms, toilets, facilities, price, uploads, ...rest } =
-      body;
-
-   
-
-   
+    body;
+    
+    const loads = []
+    for (const d of uploads){
+  
+      const up = await prisma.uploads.create({ data: { url:d.url, userId: user.id, upload_type:d.upload_type } })
+      loads.push({id:up.id,})
+}
     const listing = await prisma.listing.create({
       data: {
         ...rest,
@@ -64,7 +69,7 @@ export const POST = async (request: Request) => {
         userId: user.id,
         price: Number(price),
         Uploads: {
-          connect: uploads,
+          connect: loads,
         },
         expirationDate: getOneMonthFromNow(),
       },

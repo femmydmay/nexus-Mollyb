@@ -1,10 +1,21 @@
+'use client'
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import React from 'react'
+import { useAppDispatch } from '@/hooks';
+import { findAllListings } from '@/redux/reducers/listingReducers';
+import React, { useEffect } from 'react'
 
 const MainLayout = ({ children }:{
   children: React.ReactNode
 }) => {
+
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(findAllListings())
+  },[])
+
   return (
     <main className='flex flex-col min-h-screen'>
       <Navbar />

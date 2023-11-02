@@ -45,7 +45,7 @@ model Uploads {
   id        String   @id @default(uuid())
   url       String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  upload_type UploadType @default(Image)
+  upload_type UploadType @default(image)
   Listing   Listing? @relation(fields: [listingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   listingId String?
   userId    String
@@ -71,8 +71,8 @@ enum ListingType {
 }
 
 enum UploadType {
-  Image
-  Video
+  image
+  video
 }
 
 model User {
@@ -81,7 +81,7 @@ model User {
   lastname        String       @db.VarChar(255)
   email           String       @unique(map: "email") @db.VarChar(255)
   password        String       @db.VarChar(255)
-  image           String?      @default("http://localhost:3000/uploads/default.png") @db.VarChar(255)
+  image           String?      @default("/uploads/default.png") @db.VarChar(255)
   whatsapp_no     String?
   phone_no        String?
   alternate_email String?      @db.VarChar(255)

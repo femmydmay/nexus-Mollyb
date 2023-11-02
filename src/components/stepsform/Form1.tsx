@@ -10,8 +10,6 @@ import FetchCountry from "../FetchCountry";
 import FetchCity from "../FetchCity";
 import SelectFetch from "../SelectFetch";
 import { Box, Button } from "@mui/material";
-
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -21,7 +19,7 @@ import { BiError } from "react-icons/bi";
 interface IForm {
   state: string;
   country: string;
-  city: string;
+  city: "Abuja" | "Lagos" | "Rivers" | "Enugu";
   title: string;
   advert_type: string;
   property_type: string;
@@ -73,10 +71,11 @@ const Form1 = ({ handleNext, handleBack, index, steps }: Props) => {
     setValue,
     formState: { errors },
   } = useForm<IForm>({
+    //@ts-ignore
     resolver: yupResolver(formSchema),
     defaultValues: {
-      state: "FC",
-      country: "NG",
+      state: "Abuja",
+      country: "Nigeria",
       city: "Abuja",
       title: "",
       advert_type: "",
@@ -237,7 +236,7 @@ const Form1 = ({ handleNext, handleBack, index, steps }: Props) => {
               <FetchCity
                 register={register}
                 country={getValues().country}
-                state={watch().state}
+                state={watch().state as any}
               />
             </div>
           </div>

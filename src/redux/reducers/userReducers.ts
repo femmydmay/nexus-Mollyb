@@ -11,7 +11,8 @@ interface UserInterface extends User{
 const initialState = {
   user: null as UserInterface | null,
   isFetching: false,
-  loading:true,
+  loading: true,
+  users:[] as User[]
 }; 
 
 
@@ -45,6 +46,21 @@ export const getUser = createAsyncThunk(
   }
 );
 
+export const getUsers = createAsyncThunk("getUsers", async (_, thunkApi) => {
+ 
+  try {
+
+    const result = await axios.get<User[]>("/api/users");
+    return result.data;
+  } catch (e) {
+    const error = e as AxiosError<{ message: string }>;
+
+    if (error.response && error.response.status !== 401) {
+      toast.error(error.response?.data.message as string);
+    }
+  } 
+});
+
 
 export const setFetching = createAction<boolean>("setFetching");
 export const emptyUser = createAction("emptyUser");
@@ -59,5 +75,7 @@ export const userReducers = createReducer(initialState, (builder) => {
       state.isFetching = action.payload;
     }).addCase(emptyUser, (state, action) => { 
       state.user = {} as UserInterface;
+    }).addCase(getUsers.fulfilled, (state, action) => { 
+      state.users = action.payload as User[]
     })
 })

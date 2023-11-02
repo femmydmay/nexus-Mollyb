@@ -1,7 +1,6 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 
-/* eslint-disable @next/next/no-img-element */
 interface SelectedGridProps {
 
   videos: File[];
@@ -18,7 +17,7 @@ const SelectedGrid: React.FC<SelectedGridProps> = ({
   handleRemoveVideo
 }) => {
   return (
-    <div className="grid grid-cols-2 p-4 gap-4">
+    <div className="grid  p-4 gap-4">
       <div>
         <h2 className="font-bold uppercase py-2">Selected Images</h2>
         <section className="grid grid-cols-4 gap-3 border-r p-2">

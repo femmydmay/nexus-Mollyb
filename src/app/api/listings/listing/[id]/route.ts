@@ -1,5 +1,6 @@
 import prisma from "@/utils/database";
 
+process.env.NODE_NO_WARNINGS = "stream/web";
 
 export const GET = async (
   request: Request,
@@ -44,6 +45,8 @@ export const GET = async (
 
     return new Response(JSON.stringify(listing), { status: 200 });
   } catch (error) {
+    console.log(error);
+    
     return new Response(JSON.stringify({ message: "internal server error" }), {
       status: 500,
     });

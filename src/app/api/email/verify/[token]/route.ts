@@ -103,7 +103,7 @@ export const POST = async (req: Request, { params }: { params: { token: string }
 
     // send mail with defined transport object
     const info = await transporter.sendMail({
-      from: "Nexus Classic <femmyd4@zohomail.com>", // sender address
+      from: "Nexus MollyBW <femmyd4@zohomail.com>", // sender address
       to: body.email, // list of receivers
       subject: "Email Verification", // Subject line
 

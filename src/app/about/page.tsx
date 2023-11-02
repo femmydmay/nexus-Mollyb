@@ -3,6 +3,7 @@ import MainLayout from "@/components/MainLayout";
 import React from "react";
 
 const Page = () => {
+
   return (
     <MainLayout>
       <main>
@@ -30,10 +31,10 @@ const Page = () => {
             <article>
               <p className="text-md">
                 At Nexus, we are dedicated to revolutionizing the way you
-                navigate Nigeria&apos;s real estate market. Whether you&apos;re
-                a home owner, property buyer, seller, renter, real estate
-                professional, investor, or mortgage institution, our platform is
-                designed to cater to all your real estate needs.
+                navigate Nigeria&apos;s real estate market. Whether you&apos;re a home
+                owner, property buyer, seller, renter, real estate professional,
+                investor, or mortgage institution, our platform is designed to
+                cater to all your real estate needs.
               </p>
             </article>
           </div>
@@ -47,9 +48,9 @@ const Page = () => {
                 Our primary goal is to empower you with the data and tools you
                 need to make informed property decisions. We understand that the
                 process of buying, selling, or renting a property can be
-                overwhelming, and that&apos;s why we&apos;ve created a
-                comprehensive platform to guide you through every step of your
-                real estate journey.
+                overwhelming, and that&apos;s why we&apos;ve created a comprehensive
+                platform to guide you through every step of your real estate
+                journey.
               </p>
             </article>
           </div>
@@ -85,7 +86,7 @@ const Page = () => {
               </p>
             </article>
           </div>
-        </section>
+        </section> 
 
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -229,7 +230,7 @@ const Page = () => {
           </div>
           <div>
             <h2 className="bg-slate-900 text-white mt-6 p-4 text-2xl font-bold">
-              ABOUT NEXUS MollyBW
+              ABOUT NEXUS CLASSIC PROPERTIES
             </h2>
             <article className="space-y-10 leading-relaxed mt-4">
               <p className="whitespace-pre-wrap text-lg">

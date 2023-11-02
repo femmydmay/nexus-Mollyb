@@ -11,7 +11,7 @@
             removed.
           </p>
           <a
-            href="javascript:void(0)"
+            href=""
             className="text-indigo-600 duration-150 hover:text-indigo-400 font-medium inline-flex items-center gap-x-1"
           >
             Go back

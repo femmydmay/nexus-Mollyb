@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { getUser } from "@/redux/reducers/userReducers";
 
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Dropdown from "./DropDown";
+import CheckAuth from "./CheckAuth";
+import Loader from "./Loader";
+
 
 const Navbar = () => {
   const [state, setState] = useState(false);
@@ -21,13 +23,7 @@ const Navbar = () => {
 
   const path = usePathname()
 
-  const dispatch = useAppDispatch();
- 
-  const user = useAppSelector((state) => state.userReducers);
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
 
   return (
     <header className="shadow py-5 bg-white">
@@ -83,32 +79,10 @@ const Navbar = () => {
             state ? "" : "hidden"
           }`}
         >
-          {user.user ? (
-            <div className="order-2">
-
-              <Dropdown />
-            </div>
-          ) : (
-            <>
-              <li className="order-2 pb-5 md:pb-0">
-                <Link
-                  href="/login"
-                  className="py-3 px-6 rounded-md shadow-md text-white text-center bg-primary focus:shadow-none block md:inline"
-                >
-                  Sign In
-                </Link>
-              </li>
-              <li className="order-2 pb-5 md:pb-0 ml-4">
-                <Link
-                  href="/signup"
-                  className="py-3 px-6 rounded-md border text-primary border-primary text-center  focus:shadow-none block md:inline"
-                >
-                  Signup
-                </Link>
-              </li>
-            </>
-          )}
-
+          <Suspense fallback={ <Loader/>}>
+            
+<CheckAuth/>
+        </Suspense>
           <div className="order-1 flex-1 justify-center items-center space-y-5 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => (
               <li

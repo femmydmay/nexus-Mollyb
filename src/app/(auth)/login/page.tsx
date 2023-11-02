@@ -1,69 +1,14 @@
-"use client";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AxiosError } from "axios";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-// import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { login, setAuthLoading } from "@/redux/reducers/authReducers";
-import { useEffect, useState } from "react";
-import { CircularProgress } from "@mui/material";
-import { getUser } from "@/redux/reducers/userReducers";
-
-interface ILogin {
-  email: string;
-  password: string;
-}
+import Loader from "@/components/Loader";
+import LoginForm from "@/components/LoginForm";
+import { Suspense } from "react";
 
 const Login = () => {
-  const formSchema = yup.object().shape({
-    email: yup.string().required("email is required"),
-    password: yup.string().required("Password is required"),
-  });
-
-  const {
-    register,
-    reset,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ILogin>({
-    resolver: yupResolver(formSchema),
-  });
-  const dispatch = useAppDispatch();
-  const { loggedin, loading } = useAppSelector((state) => state.authReducers);
-  const { user } = useAppSelector((state) => state.userReducers);
-  const router = useRouter();
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      dispatch(setAuthLoading({ loading: true }));
-
-      dispatch(login(data));
-    } catch (error) {
-      const e = error as AxiosError<{ message: string }>;
-
-      if (e.response) {
-        toast.error(e?.response?.data?.message as string);
-      }
-    }
-  });
-
-  useEffect(() => {
-    if (user) {
-      dispatch(getUser());
-      reset();
-      router.push("/dashboard");
-    }
-  }, [user, dispatch, reset, router]);
-
+  
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
       <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
         <div className="text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="assets/logo.png" width={150} alt="" className="mx-auto" />
+          <img src="assets/logo.png" width={150} className="mx-auto" />
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
               Log in to your account
@@ -79,49 +24,11 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div className="bg-white shadow p-4 py-6 space-y-8 sm:p-6 sm:rounded-lg">
-          <form onSubmit={onSubmit} className="space-y-5">
-            <div>
-              <label className="font-medium">Email</label>
-              <input
-                type="text"
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                placeholder="james@email.com"
-                {...register("email")}
-              />
-              {errors.email && (
-                <p className="text-rose-500">{errors.email.message}</p>
-              )}
-            </div>
-            <div>
-              <label className="font-medium">Password</label>
-              <input
-                type="password"
-                placeholder="*********"
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                {...register("password")}
-              />
-              {errors.password && (
-                <p className="text-rose-500">{errors.password.message}</p>
-              )}
-            </div>
-            <button
-              className="w-full px-4 py-2 text-white font-medium bg-blue-600 hover:bg-blue-500 active:bg-indigo-600 rounded-lg duration-150 flex items-center justify-center"
-              disabled={loading ? true : false}
-            >
-              {loading ? (
-                <CircularProgress
-                  size={20}
-                  disableShrink
-                  className="text-white fill-white mr-2"
-                  sx={{ color: "white" }}
-                />
-              ) : (
-                ""
-              )}{" "}
-              Sign in
-            </button>
-          </form>
+        <div className="bg-white max-sm:w-11/12 max-sm:mx-auto shadow p-4 py-6 space-y-8 sm:p-6 sm:rounded-lg">
+          <Suspense fallback={ <Loader/>}>
+            
+          <LoginForm/>
+       </Suspense>
           <div className="relative">
             <span className="block w-full h-px bg-gray-300"></span>
             <p className="inline-block w-fit text-sm bg-white px-2 absolute -top-2 inset-x-0 mx-auto">
@@ -168,6 +75,8 @@ const Login = () => {
             Forgot password?
           </a>
         </div>
+
+        
       </div>
     </main>
   );

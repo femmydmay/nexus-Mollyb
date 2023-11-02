@@ -1,26 +1,17 @@
 import { Box } from "@mui/material";
-import axios, { AxiosProgressEvent } from "axios";
+import axios from "axios";
 import React, { ChangeEvent, MouseEventHandler, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
-import Modal from "@mui/joy/Modal";
-import ModalClose from "@mui/joy/ModalClose";
-import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
-import DialogTitle from "@mui/joy/DialogTitle";
-import DialogContent from "@mui/joy/DialogContent";
 
-import { Fetcher } from "@/types/fetch";
-import useSWR from "swr";
-
-import { Uploads } from "@prisma/client";
 
 import { toast } from "react-hot-toast";
-import Loading from "../Loading";
+
 import SelectedGrid from "../SelectedGrid";
-import UploadModal from "../UploadModal";
+
 import { Button } from "@mui/joy";
 import { BiImageAdd, BiVideoPlus } from "react-icons/bi";
 import { uploadMultipleFiles } from "@/utils/fetch";
@@ -29,8 +20,7 @@ interface FilesUpload {
   previewImage: string | ArrayBuffer;
   file: File;
 }
-const fetcher: Fetcher = (url) =>
-  axios.get(url as string).then((res) => res.data);
+
 interface Props {
   handleNext: MouseEventHandler<HTMLButtonElement>;
   handleBack: MouseEventHandler<HTMLButtonElement>;
@@ -47,22 +37,15 @@ interface Props {
 }
 const Form3 = ({ handleNext, handleBack, index, steps }: Props) => {
   const [value, setValue] = useState("");
-  const datalo = JSON.parse(localStorage.getItem("propertydata") as string);
-  const [fileUpload, setFileUpload] = useState<FilesUpload[]>([]);
+
 
   const router = useRouter();
 
-  const [layout, setLayout] = React.useState<
-    ModalDialogProps["layout"] | undefined
-  >(undefined);
 
   const [selectedImages, setSelectedImages] = React.useState<File[]>([]);
   const [selectedVideos, setSelectedVideos] = React.useState<File[]>([])
-  const [uploads, setUploads] = React.useState<{id:string}[]>([]);
-  const [selectedItem, setSelectedItem] = React.useState<"Videos" | "Images">(
-    "Images"
-  );
-  const [open, setOpen] = React.useState<boolean>(false);
+
+
 
   const imgRef =  useRef<HTMLInputElement | null>(null)
   const videoRef =  useRef<HTMLInputElement | null>(null)
@@ -105,7 +88,11 @@ const Form3 = ({ handleNext, handleBack, index, steps }: Props) => {
 
     try {
         
-      const uploaded = await uploadMultipleFiles([...selectedImages, ...selectedVideos], '/api/uploads')
+      const uploaded = await uploadMultipleFiles(
+        [...selectedImages, ...selectedVideos],
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/auto/upload`
+      );
+  
       
       if (uploaded?.length  === [...selectedImages, ...selectedVideos].length) {
         
@@ -122,7 +109,7 @@ const Form3 = ({ handleNext, handleBack, index, steps }: Props) => {
         }
       }
       } catch (error) {
-        console.log(error);
+      toast.error('error creating listing')
       }
    
   };

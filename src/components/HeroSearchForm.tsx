@@ -1,13 +1,11 @@
 'use client'
-import { ReadonlyURLSearchParams, usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import * as yup from "yup";
-// import { useRouter } from 'next/router';
-import React, { useCallback } from 'react'
+
+import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-interface SearchParams extends ReadonlyURLSearchParams{
-    size: number
-}
+
 interface Type {
   search: string;
   property_type: string;
@@ -21,32 +19,20 @@ const HeroSearchForm = () => {
       });
      const {
        register,
-       reset,
-       watch,
+      
        handleSubmit,
-       formState: { errors },
+       formState: { },
      } = useForm<Type>({
+       //@ts-ignore
          resolver: yupResolver(formSchema),
          defaultValues:{
            property_type:"for+sale"
        }
      });
      const router = useRouter();
-    const pathname = usePathname();
+ 
 
-    const searchParams = useSearchParams();
-
-      const createQueryString = useCallback(
-          (name: string, value: string) => {
-              
-              const params = new URLSearchParams(searchParams as SearchParams); 
-     
-          params.set(name, value);
-
-          return params.toString();
-        },
-        [searchParams]
-      );
+   
     
     const handlesubmit = handleSubmit((data) => {
         

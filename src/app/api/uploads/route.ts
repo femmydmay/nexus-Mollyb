@@ -34,7 +34,7 @@ export const POST = async (request: Request) => {
 
     const validfile = isFileSizeValid(
       file,
-      file.type.startsWith("image") ? 1000 : 5000
+      file.type.startsWith("image") ? 10000 : 15000
     );
     if (!validfile) { 
       return new Response(JSON.stringify({message: `${file.name} is  too large`},), { status: 400})
@@ -54,7 +54,7 @@ export const POST = async (request: Request) => {
 
 
     await writeFile(path, buffer);
-    const url = `http://localhost:3000/uploads/${newfilename}`;
+    const url = `/uploads/${newfilename}`;
     const upload = await prisma.uploads.create({data:{url, upload_type, userId:user.id}})
     if (upload) {
 console.log(upload);
@@ -62,7 +62,7 @@ console.log(upload);
       return new Response(JSON.stringify({id:upload.id}), { status: 200 });
     }
   } catch (error) {
-console.log(error);
+
 
   
           return new Response(JSON.stringify("internal server error"), { status: 500 });

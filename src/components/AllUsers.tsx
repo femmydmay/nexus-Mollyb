@@ -1,5 +1,5 @@
 "use client";
-import { Fetcher } from "@/types/fetch";
+
 
 
 import {
@@ -24,14 +24,16 @@ import toast from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 
 import FlashAlert from "@/components/FlashAlert";
-import { User } from "@/types/user";
+import { User } from "@prisma/client";
+import { useAppSelector } from "@/hooks";
+
 
 
 interface IForm {
   id: string;
   firstname: string;
   lastname: string;
-  username: string;
+  
   email_verified: boolean;
   email: string;
   password: string;
@@ -41,7 +43,7 @@ interface IForm {
 
 // let completeButtonRef = useRef(null);
 
-const AllUsers = ({data}:{data:User[]}) => {
+const AllUsers = () => {
 
   const formSchema = yup.object().shape({
     id: yup.string(),
@@ -61,17 +63,20 @@ const AllUsers = ({data}:{data:User[]}) => {
 
   const {
     register,
-    handleSubmit,
+   handleSubmit,
     watch,
     reset,
     getValues,
     formState: { errors },
   } = useForm<IForm>({
-    resolver: yupResolver(formSchema),
+//@ts-ignore
+  resolver:yupResolver(formSchema)
   });
+
+    const { users:data } = useAppSelector((state) => state.userReducers);
     let [isOpen, setIsOpen] = useState(false);
     let [isOpendel, setIsOpendel] = useState(false);
-
+  
       const onSubmit = handleSubmit(async (data) => {
         try {
           const response = await axios.put(`/api/users/user/${data.id}`, data);
@@ -414,7 +419,7 @@ const AllUsers = ({data}:{data:User[]}) => {
                             firstname: data.firstname,
                             lastname: data.lastname,
                             email: data.email,
-                            username: data.username,
+                         
                             email_verified: data.email_verified,
                             role: data.role,
                             id: data.id,

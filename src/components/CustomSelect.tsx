@@ -10,7 +10,7 @@ data: Array<{value:string, label:string}>
 
 const CustomSelect = ({data,  register, name}:Props) => {
   return (
-    <select  id="" className="w-full py-3 pl-2" {...register(name)}  >
+    <select  id="" className="w-full py-3 pl-2 rounded" {...register(name)}  >
       {data.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}
