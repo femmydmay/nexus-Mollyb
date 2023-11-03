@@ -1,11 +1,11 @@
 
 
 
-import { Inter } from 'next/font/google'
+
 
 import { Toaster } from 'react-hot-toast'
 import MainLayout from '@/components/MainLayout'
-const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata = {
   title: 'Nexus classic',

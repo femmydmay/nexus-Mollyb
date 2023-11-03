@@ -1,5 +1,5 @@
 
-import { Inter } from "next/font/google";
+
 
 import Dash from "@/layout/Dash";
 
