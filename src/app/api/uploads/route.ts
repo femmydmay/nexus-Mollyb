@@ -2,6 +2,7 @@ import { writeFile } from "fs/promises";
 import prisma from "@/utils/database";
 import { getErrorResponse } from "@/lib/helpers";
 import { isFileSizeValid } from "@/utils/functions";
+import { UploadType } from "@prisma/client";
 
 export const POST = async (request: Request) => {
   try {
@@ -41,7 +42,7 @@ export const POST = async (request: Request) => {
     }
 
 
-    const upload_type = file.type.startsWith("image") ? "image" : "video"
+    const upload_type = file.type.startsWith("image") ? "image" : "video" as UploadType
 
 
     const ext = file.name.split(".").pop();
