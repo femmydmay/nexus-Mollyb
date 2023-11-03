@@ -42,7 +42,7 @@ export const POST = async (request: Request) => {
     }
 
 
-    const upload_type = file.type.startsWith("image") ? "image" : "video" as UploadType
+    const upload_type = file.type.startsWith("image") ? "image" : "video" as UploadType | 'image';
 
 
     const ext = file.name.split(".").pop();
