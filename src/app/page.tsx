@@ -23,12 +23,12 @@ export default async function Home() {
                 </strong>
               </h1>
 
-              <p className="mt-4 max-w-lg text-slate-900 font-bold sm:text-xl/relaxed ">
+              <p className="mt-4 max-w-lg text-white font-bold sm:text-xl/relaxed ">
                 Your Trusted Search For Credible Real Estate
               </p>
 
               <div className="mt-8 w-full text-center  space-y-5">
-                <p className="text-2xl font-bold text-slate-900 ">
+                <p className="text-2xl font-bold text-white ">
                   BUY, SELL, RENT HOUSES AND PURCHASE LAND
                 </p>
                 <HeroSearchForm />
